@@ -29,3 +29,26 @@ public:
 
 TC : O(t.length())
 SC : O(t.length())
+
+
+*******************************************************
+
+Count matching character
+
+int solve(string s, string t, int i, int j)
+{
+    if(i == s.length() || j == t.length()
+    return;
+    
+    //matching ke case mein
+    if(s[i] == t[j])
+    {
+         return 1 + solve(s, t, i + 1, j + 1);
+    } 
+    
+    //not matched ke case meinn 
+    return solve(s, t, i + 1, j);
+}
+
+
+later compare if count == s.length() ? true : false
