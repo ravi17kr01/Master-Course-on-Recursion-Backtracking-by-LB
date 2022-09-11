@@ -1,0 +1,33 @@
+https://www.codingninjas.com/codestudio/problems/subsequences-of-string_985087
+
+#include<bits/stdc++.h>
+using namespace std;
+void solve(string str, int index, vector<string> &ans, string res){
+    //base case
+    if(index == str.length()){
+        if(res != ""){
+            ans.push_back(res);
+        }
+        return;
+    }
+    
+    //include ki call
+    solve(str, index+1, ans, res+str[index]);
+    
+    //exclude ki call
+    solve(str, index+1, ans, res);
+}
+
+vector<string> subsequences(string str){
+	
+	int index = 0;
+    string res = "";
+    vector<string> ans;
+    solve(str, index, ans, res);
+    
+    return ans;
+	
+}
+
+TC : O(2^n)
+SC : O(n)
