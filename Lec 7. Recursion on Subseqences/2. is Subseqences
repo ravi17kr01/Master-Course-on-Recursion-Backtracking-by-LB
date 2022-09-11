@@ -1,0 +1,31 @@
+https://leetcode.com/problems/is-subsequence/
+
+class Solution {
+public:
+    bool solve(string s, string t, int i, int j){
+        //base case
+        if(i == s.length())
+            return true;
+        if(j == t.length())
+            return false;
+        
+        //if matched
+        if(s[i] == t[j])
+           return solve(s, t, i+1, j+1);
+        
+        //if not matched
+        return solve(s, t, i, j+1);
+    }
+    
+    bool isSubsequence(string s, string t) {
+        int i = 0;
+        int j = 0;
+        
+        bool ans = solve(s, t, i, j);
+        return ans;
+        
+    }
+};
+
+TC : O(t.length())
+SC : O(t.length())
