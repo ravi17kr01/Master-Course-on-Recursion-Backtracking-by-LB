@@ -1,1 +1,34 @@
+https://www.codingninjas.com/codestudio/problems/longest-increasing-subsequence_630459
 
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve(int arr[], int n, int index, int lastValue, int count, int &maxi){
+    //base case 
+    if(index == n){
+        maxi = max(maxi, count);
+        return;
+    }
+    
+    //include ki call
+    if(lastValue == -1 || arr[index] > lastValue){
+//         lastValue = arr[index];
+        solve(arr, n, index+1, arr[index], count+1, maxi);
+    }
+    //exclude ki call
+    solve(arr, n, index+1, lastValue, count, maxi);
+}
+int longestIncreasingSubsequence(int arr[], int n)
+{   
+    int index = 0;
+    int lastValue = -1;
+    int count = 0;
+    int maxi = INT_MIN;
+    solve(arr, n, index, lastValue, count, maxi);
+    if(maxi == INT_MIN)
+        return 0;
+    return maxi;
+}
+
+TC : O(n)
+SC : O(n)
