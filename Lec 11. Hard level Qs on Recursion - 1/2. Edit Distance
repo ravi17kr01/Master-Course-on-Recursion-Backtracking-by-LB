@@ -1,1 +1,32 @@
 
+https://leetcode.com/problems/edit-distance/
+
+class Solution {
+public:
+    int solve(string word1, string word2, int i, int j){
+        //base case
+        if(i == word1.length())
+            return word2.length()-j;
+        if(j == word2.length())
+            return word1.length()-i;
+        
+        //macthing ke case mein
+        if(word1[i] == word2[j]){
+           return solve(word1, word2, i+1, j+1);
+        }else{
+        //unmatching ke case mein
+        int insertAns = 1 + solve(word1, word2, i, j+1);
+        int deleteAns = 1 + solve(word1, word2, i+1, j);
+        int replaceAns = 1 + solve(word1, word2, i+1, j+1);
+            
+        return min({insertAns, deleteAns, replaceAns});
+        }
+        
+    }
+    
+    int minDistance(string word1, string word2) {
+        int i=0, j=0;
+        int ans = solve(word1, word2, i, j);
+        return ans;
+    }
+};
